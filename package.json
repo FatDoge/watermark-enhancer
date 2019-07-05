@@ -1,6 +1,6 @@
 {
   "name": "watermark-enhancer",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "add watermark to components in a more elegant way",
   "main": "/dist/index.js",
   "files": [
