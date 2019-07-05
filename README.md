@@ -1,4 +1,7 @@
 ### watermark-enhancer
+![case](https://cdn.fatdoge.cn/watermark-enhancer-user.svg)![case](https://cdn.fatdoge.cn/watermark-enhancer-view.png)
+> 移步[详细文档](https://fatdoge.github.io/watermark-enhancer)
+
 1.安装
 ```
 npm i watermark-enhancer -d
