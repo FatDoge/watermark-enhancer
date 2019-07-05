@@ -1,10 +1,10 @@
 # watermark-enhancer
 
-> A magical documentation site generator.
+> Add watermark to your react components in a more elegent way.
 
-* Simple and lightweight (~12kb gzipped)
-* Multiple themes
-* Not build static html files
+* Easy to use
+* lightweight (~5.35kb)
+* Higher Order Component Producer
 
 [GitHub](https://github.com/fatdoge/watermark-enhancer/)
 [Get Started](#安装)
