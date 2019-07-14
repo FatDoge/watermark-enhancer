@@ -12,7 +12,8 @@ const Enhancer = (
     constructor(props) {
       super(props)
       this.state = {
-        options
+        options,
+        content: '',
       }
       this.waterMark = React.createRef()
     }
@@ -20,6 +21,7 @@ const Enhancer = (
     async componentDidMount() {
       if ( needEffectContent ) {
         const content = await effectContentFunc();
+        this.setState({ content: content });
         WaterMark({
           ...options,
           content,
@@ -34,8 +36,11 @@ const Enhancer = (
     }
 
     render() {
+      const { content } = this.state;
       return (<div ref={this.waterMark}>
-        <WrappedComponent {...this.props}/>
+        {
+          (needEffectContent && !content) ? null : <WrappedComponent {...this.props}/>
+        }
       </div>)
     }
   }
