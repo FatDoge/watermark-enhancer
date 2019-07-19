@@ -4,7 +4,6 @@ import WaterMark from './WaterMark/index'
 
 const Enhancer = (
   options = {}, // 水印参数, 水印内容可异步获取
-  needEffectContent = false, // 判断水印是否需要异步获取
   effectContentFunc, // 异步获取水印内容的方法, 需返回一个Promise
   ) => WrappedComponent => {
     return class EnhancerWaterMark extends Component {
@@ -12,14 +11,16 @@ const Enhancer = (
     constructor(props) {
       super(props)
       this.state = {
-        options
+        options,
+        content: '',
       }
       this.waterMark = React.createRef()
     }
 
     async componentDidMount() {
-      if ( needEffectContent ) {
+      if ( effectContentFunc ) {
         const content = await effectContentFunc();
+        this.setState({ content: content });
         WaterMark({
           ...options,
           content,
@@ -34,8 +35,11 @@ const Enhancer = (
     }
 
     render() {
+      const { content } = this.state;
       return (<div ref={this.waterMark}>
-        <WrappedComponent {...this.props}/>
+        {
+          (effectContentFunc && !content) ? null : <WrappedComponent {...this.props}/>
+        }
       </div>)
     }
   }
