@@ -1,6 +1,6 @@
 {
   "name": "watermark-enhancer",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "add watermark to your react components in a more elegant way.",
   "main": "/dist/index.js",
   "files": [
