@@ -26,8 +26,8 @@ const Enhancer = (
       const { options } = this.state
       const { asyncContent } = watermarkOptions
       if (typeof asyncContent === 'function' ) {
-        const content = await asyncContent();
-        this.setState({ content: content });
+        const content = await asyncContent()
+        this.setState({ content })
         WaterMark({
           ...options,
           content,
