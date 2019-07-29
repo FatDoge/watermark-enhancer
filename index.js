@@ -1,25 +1,32 @@
 import React, { Component } from 'react'
 import WaterMark from './WaterMark/index'
-
+import LoadingContainer from './Loading/index'
 
 const Enhancer = (
-  options = {}, // 水印参数, 水印内容可异步获取
-  effectContentFunc, // 异步获取水印内容的方法, 需返回一个Promise
+  watermarkOptions = {
+    content,
+    asyncContent,
+  }, // 水印参数, 水印内容可异步获取
+  loadingOptions = {
+    content,
+  }
   ) => WrappedComponent => {
     return class EnhancerWaterMark extends Component {
 
     constructor(props) {
       super(props)
       this.state = {
-        options,
+        options: watermarkOptions,
         content: '',
       }
       this.waterMark = React.createRef()
     }
 
     async componentDidMount() {
-      if ( effectContentFunc ) {
-        const content = await effectContentFunc();
+      const { options } = this.state
+      const { asyncContent } = watermarkOptions
+      if (typeof asyncContent === 'function' ) {
+        const content = await asyncContent();
         this.setState({ content: content });
         WaterMark({
           ...options,
@@ -35,10 +42,12 @@ const Enhancer = (
     }
 
     render() {
-      const { content } = this.state;
+      const { content } = this.state
+      const { asyncContent } = watermarkOptions
+      const { content: loadingContent, ...loadingStyle } = loadingOptions
       return (<div ref={this.waterMark}>
         {
-          (effectContentFunc && !content) ? null : <WrappedComponent {...this.props}/>
+          (asyncContent && !content) ? <LoadingContainer loadingStyle={loadingStyle} loadingContent={loadingContent}/> : <WrappedComponent {...this.props}/>
         }
       </div>)
     }

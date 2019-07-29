@@ -10,16 +10,27 @@ export default EnhancerWaterMark({
   width: '100',
   height: '80',
   rotate: '17',
-}, true, renderEffectContent)(WrappedComponent)
+  content: 'test',
+  asyncContent: renderEffectContent,
+}, {
+  content: 'watermark loading...',
+  color: 'black',
+  background: 'white'
+})(WrappedComponent)
 ```
 ## 注意
 
 - 参数说明
   ``` 
   EnhancerWaterMark(
-    options = {}, // 水印参数, 水印内容可异步获取
-    needEffectContent = false, // 判断水印是否需要异步获取
-    effectContentFunc, // 异步获取水印内容的方法, 需返回一个Promise
+    watermarkOptions = {
+      content : 'sync content',
+      asyncContent: renderEffectContent,
+    }, // 水印参数, 水印内容可异步获取
+    loadingOptions = {
+      ...loadingStyle,
+      content: 'loading...'
+    }, // loading遮罩层配置
   )(WrappedComponent) // 传入需要加上水印的组件
   ```
 - 同步的水印内容
@@ -36,14 +47,13 @@ export default EnhancerWaterMark({
 - 异步的水印内容 
   ```
   EnhancerWaterMark(
-    - content  
+    - content,
+    + asyncContent: renderEffectContent,  
     options = {
       width,
       height,
       ...  
     }, 
-    + true, // 代表需要异步获取水印内容
-    + effectContentFunc
   )(WrappedComponent)
   ```
 ## 开发
