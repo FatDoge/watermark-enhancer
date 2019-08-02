@@ -42,7 +42,6 @@ const watermark = ({
 
     const base64Url = canvas.toDataURL();
     const __wm = document.querySelector('.__wm');
-
     const watermarkDiv = __wm || document.createElement("div");
     const styleStr = `
     position:absolute;
@@ -67,6 +66,7 @@ const watermark = ({
     if (MutationObserver) {
         let mo = new MutationObserver(function () {
             const __wm = document.querySelector('.__wm');
+            console.log(__wm)
             // 只在__wm元素变动才重新调用 __canvasWM
             if ((__wm && __wm.getAttribute('style') !== styleStr) || !__wm) {
                 // 避免一直触发

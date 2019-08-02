@@ -6,6 +6,7 @@ const containerStyle = {
   alignItems: 'center',
   background: 'white',
   color: 'black',
+  height: '-webkit-fill-available'
 }
 class LoadingContainer extends Component {
 

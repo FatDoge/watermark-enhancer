@@ -1,6 +1,13 @@
-### watermark-enhancer
+## watermark-enhancer
+> Add watermark to your react components in a more elegent way.
+
+![](https://img.shields.io/npm/l/watermark-enhancer)
+![](https://img.shields.io/npm/dt/watermark-enhancer)
+![](https://img.shields.io/bundlephobia/minzip/watermark-enhancer?label=package%20size)
+
 ![case](https://cdn.fatdoge.cn/watermark-enhancer-user.png)![case](https://cdn.fatdoge.cn/watermark-enhancer-view.png)
 > 移步[详细文档](https://fatdoge.github.io/watermark-enhancer)
+
 
 1.安装
 ```
